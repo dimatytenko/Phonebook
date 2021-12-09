@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import Container from 'components/Container';
+import ContactForm from 'components/ContactForm';
+import ContactList from 'components/ContactList';
+import Filter from 'components/Filter';
 
 export class App extends Component {
   state = {
@@ -11,20 +14,35 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  handleNameChange = event => {
-    const { name, value } = event.currentTarget;
-    this.setState({ [name]: value });
+  addContact = ({ name, number }) => {
+    const names = this.state.contacts.map(contact => contact.name);
+    if (names.includes(name)) {
+      alert(`${name} is already in contacts`);
+      return;
+    } else {
+      this.setState(prevState => ({
+        contacts: [
+          ...prevState.contacts,
+          { name: name, number: number, id: nanoid() },
+        ],
+      }));
+    }
+  };
+  deleteContact = nameContact => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(
+        contact => contact.name !== nameContact,
+      ),
+    }));
   };
 
   handleFilterChange = event => {
     this.setState({ filter: event.currentTarget.value });
   };
 
-  renderContactsByName = () => {
+  visibleContactsByName = () => {
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLowerCase();
 
@@ -33,82 +51,17 @@ export class App extends Component {
     );
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(this.state);
-
-    this.setState(prevState => ({
-      contacts: [
-        ...prevState.contacts,
-        { name: prevState.name, number: prevState.number, id: nanoid() },
-      ],
-    }));
-
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({ name: '', number: '' });
-  };
-
   render() {
-    const { name, number, filter } = this.state;
-    const contacts = this.renderContactsByName();
-    console.log(contacts);
+    const visibleContacts = this.visibleContactsByName();
 
     return (
       <Container>
-        <div>
-          <h2>Phonebook</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name
-              <input
-                value={name}
-                onChange={this.handleNameChange}
-                type="text"
-                name="name"
-                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-                required
-              />
-            </label>
-            <label>
-              Number
-              <input
-                value={number}
-                onChange={this.handleNameChange}
-                type="tel"
-                name="number"
-                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-                required
-              />
-            </label>
+        <h1>Phonebook</h1>
+        <ContactForm onSubmit={this.addContact} />
 
-            <button type="submit">Add contact</button>
-          </form>
-        </div>
-        <div>
-          <h2>Contacts</h2>
-          <label>
-            Find contacts by name
-            <input
-              type="text"
-              value={filter}
-              onChange={this.handleFilterChange}
-            />
-          </label>
-          <ul>
-            {contacts.map(contact => {
-              return (
-                <li key={contact.id}>
-                  {contact.name}: {contact.number}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        <h2>Contacts</h2>
+        <Filter value={this.filter} onChange={this.handleFilterChange} />
+        <ContactList contacts={visibleContacts} onDelete={this.deleteContact} />
       </Container>
     );
   }

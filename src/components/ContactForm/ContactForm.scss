@@ -1,0 +1,38 @@
+@import 'styles/shared';
+.Form {
+  border: 2px solid $black;
+  padding: 15px;
+  display: inline-flex;
+
+  &__label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  &__input {
+    margin-bottom: 20px;
+    padding: 0 5px;
+    outline: none;
+
+    &:focus {
+      border-color: $button-primary;
+    }
+  }
+
+  &__button {
+    display: block;
+    cursor: pointer;
+    background-color: $white;
+    border: none;
+    outline: none;
+    padding: 5px 20px;
+    border-radius: 10px;
+    transition: background-color 500ms;
+    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+
+    &:hover,
+    &:focus {
+      background-color: $button-primary;
+    }
+  }
+}
