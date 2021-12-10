@@ -16,6 +16,7 @@ export class ContactForm extends Component {
     event.preventDefault();
 
     this.props.onSubmit(this.state);
+    this.props.onClose();
 
     this.reset();
   };

@@ -84,7 +84,10 @@ export class App extends Component {
 
         {this.state.showModal && (
           <Modal onClose={this.toggleModal}>
-            <ContactForm onSubmit={this.addContact} />
+            <ContactForm
+              onSubmit={this.addContact}
+              onClose={this.toggleModal}
+            />
           </Modal>
         )}
 
