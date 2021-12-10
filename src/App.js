@@ -4,16 +4,15 @@ import Container from 'components/Container';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
+import IconButton from 'components/IconButton';
+import { ReactComponent as PlusIcon } from './icons/plus.svg';
+import Modal from 'components/Modal';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
+    showModal: false,
   };
 
   addContact = ({ name, number }) => {
@@ -51,13 +50,43 @@ export class App extends Component {
     );
   };
 
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parseContacts = JSON.parse(contacts);
+    this.setState({ contacts: parseContacts });
+  }
+  componentDidUpdate(prevState) {
+    const nextContacts = this.state.contacts;
+    const prevContacts = prevState.contacts;
+
+    if (nextContacts !== prevContacts) {
+      localStorage.setItem('contacts', JSON.stringify(nextContacts));
+    }
+  }
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
+  };
+
   render() {
     const visibleContacts = this.visibleContactsByName();
 
     return (
       <Container>
-        <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact} />
+        <div>
+          <h1>Phonebook</h1>
+          <IconButton aria-label="plus" onClick={this.toggleModal}>
+            <PlusIcon width="20" height="20" />
+          </IconButton>
+        </div>
+
+        {this.state.showModal && (
+          <Modal onClose={this.toggleModal}>
+            <ContactForm onSubmit={this.addContact} />
+          </Modal>
+        )}
 
         <h2>Contacts</h2>
         <Filter value={this.filter} onChange={this.handleFilterChange} />

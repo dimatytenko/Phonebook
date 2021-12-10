@@ -1,0 +1,23 @@
+@import 'styles/shared';
+
+.IconButton {
+  margin: 0;
+  padding: 2px 10px;
+  border: none;
+  border-radius: 10%;
+  color: $black;
+  font: inherit;
+  background-color: $white;
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color $timing-delay;
+
+  &:hover,
+  :focus {
+    background-color: $button-primary;
+    fill: $white;
+  }
+}

@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './ContactItem.scss';
+import IconButton from 'components/IconButton';
+import { ReactComponent as MinusIcon } from '../../icons/minus.svg';
 
 function ContactItem({ name, number, onDelete }) {
   return (
-    <li className="contact">
-      {name}: {number}
-      <button
-        className="contact__button"
-        type="button"
-        onClick={() => onDelete(name)}
-      >
-        Delete
-      </button>
-    </li>
+    <div className="contact">
+      <li className="contact__item">
+        {name}: {number}
+      </li>
+      <IconButton onClick={() => onDelete(name)} aria-label="minus">
+        <MinusIcon width="20" height="20" />
+      </IconButton>
+    </div>
   );
 }
 

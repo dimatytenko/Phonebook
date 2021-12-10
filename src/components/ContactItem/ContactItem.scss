@@ -3,21 +3,10 @@
 .contact {
   margin-left: 40px;
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
 
-  &__button {
-    background-color: $white;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    padding: 5px 20px;
-    border-radius: 10px;
-    margin-left: 20px;
-    transition: background-color 500ms;
-    box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.3);
-
-    &:hover,
-    &:focus {
-      background-color: $button-primary;
-    }
+  &__item {
+    margin-right: 10px;
   }
 }

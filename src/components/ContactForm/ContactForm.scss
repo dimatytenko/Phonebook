@@ -2,7 +2,11 @@
 .Form {
   border: 2px solid $black;
   padding: 15px;
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
+  &__box {
+    margin: 0 auto;
+  }
 
   &__label {
     display: block;
@@ -27,7 +31,7 @@
     outline: none;
     padding: 5px 20px;
     border-radius: 10px;
-    transition: background-color 500ms;
+    transition: background-color $timing-delay;
     box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 
     &:hover,
