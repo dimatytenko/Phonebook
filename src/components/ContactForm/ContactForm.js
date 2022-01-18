@@ -29,10 +29,8 @@ export default function ContactForm({ onClose }) {
       return;
     } else {
       onSubmit({ name, number });
+      onClose();
     }
-
-    onSubmit({ name, number });
-    onClose();
 
     reset();
   };
