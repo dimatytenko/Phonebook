@@ -30,9 +30,8 @@ export default function ContactForm({ onClose }) {
     } else {
       onSubmit({ name, number });
       onClose();
+      reset();
     }
-
-    reset();
   };
 
   const reset = () => {
