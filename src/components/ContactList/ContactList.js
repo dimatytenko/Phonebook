@@ -1,16 +1,30 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 import ContactItem from 'components/ContactItem';
-import { useSelector } from 'react-redux';
-import { getVisibleContactsByName } from '../../redux/contacts/contacts-selectors';
+import Loader from '../Loader';
 
 function ContactList() {
-  const contacts = useSelector(getVisibleContactsByName);
+  const dispatch = useDispatch();
+  useEffect(() => dispatch(contactsOperations.fetchContacts()), [dispatch]);
+  const contacts = useSelector(state =>
+    contactsSelectors.getVisibleContacts(state),
+  );
+
+  const isLoading = useSelector(contactsSelectors.getLoading);
 
   return (
-    <ul>
-      {contacts.map(({ id, name, number }) => (
-        <ContactItem key={id} name={name} number={number} />
-      ))}
-    </ul>
+    <div>
+      {isLoading && <Loader />}
+
+      {contacts.length && !isLoading > 0 && (
+        <ul>
+          {contacts.map(({ id, name, number }) => (
+            <ContactItem key={id} id={id} name={name} number={number} />
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 

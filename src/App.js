@@ -16,20 +16,20 @@ export default function App() {
 
   return (
     <Container>
-      <div>
+      <div className="App">
         <h1>Phonebook</h1>
         <IconButton aria-label="plus" onClick={toggleModal}>
           <PlusIcon width="20" height="20" />
         </IconButton>
+        {showModal && (
+          <Modal onClose={toggleModal}>
+            <ContactForm onClose={toggleModal} />
+          </Modal>
+        )}
+        <h2>Contacts</h2>
+        <Filter />
+        <ContactList />
       </div>
-      {showModal && (
-        <Modal onClose={toggleModal}>
-          <ContactForm onClose={toggleModal} />
-        </Modal>
-      )}
-      <h2>Contacts</h2>
-      <Filter />
-      <ContactList />
     </Container>
   );
 }

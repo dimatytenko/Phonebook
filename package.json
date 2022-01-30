@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "axios": "^0.25.0",
     "eslint": "^7.11.0",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
@@ -51,6 +52,7 @@
     "node-sass": "^6.0.1",
     "prettier": "^2.5.0",
     "prop-types": "^15.7.2",
+    "react-loader-spinner": "^5.1.0",
     "react-redux": "^7.2.6",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0"

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './ContactForm.scss';
-import actions from '../../redux/contacts/contacts-actions';
-import { getContacts } from '../../redux/contacts/contacts-selectors';
+import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
 export default function ContactForm({ onClose }) {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(contactsSelectors.getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const onSubmit = state => dispatch(actions.addContact(state));
+  const onSubmit = contact => dispatch(contactsOperations.addContact(contact));
 
   const handleNameChange = event => {
     setName(event.currentTarget.value);

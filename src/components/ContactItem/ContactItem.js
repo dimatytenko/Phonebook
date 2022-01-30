@@ -4,9 +4,9 @@ import './ContactItem.scss';
 import IconButton from 'components/IconButton';
 import { ReactComponent as MinusIcon } from '../../icons/minus.svg';
 import { useDispatch } from 'react-redux';
-import contactsActions from '../../redux/contacts/contacts-actions';
+import { contactsOperations } from '../../redux/contacts';
 
-function ContactItem({ name, number }) {
+function ContactItem({ id, name, number }) {
   const dispatch = useDispatch();
   return (
     <li className="contact">
@@ -15,7 +15,7 @@ function ContactItem({ name, number }) {
       </div>
       <div className="contact__button">
         <IconButton
-          onClick={() => dispatch(contactsActions.deleteContact(name))}
+          onClick={() => dispatch(contactsOperations.deleteContact(id))}
           aria-label="minus"
         >
           <MinusIcon width="20" height="20" />
