@@ -17,7 +17,7 @@ function ContactList() {
     <div>
       {isLoading && <Loader />}
 
-      {contacts.length && !isLoading > 0 && (
+      {contacts.length > 0 && !isLoading && (
         <ul>
           {contacts.map(({ id, name, number }) => (
             <ContactItem key={id} id={id} name={name} number={number} />
