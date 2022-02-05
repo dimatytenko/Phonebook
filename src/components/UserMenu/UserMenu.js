@@ -1,3 +1,5 @@
+import { authSelectors, authOperations } from '../../redux/auth';
+import { useSelector, useDispatch } from 'react-redux';
 const styles = {
   container: {
     display: 'flex',
@@ -13,10 +15,14 @@ const styles = {
 };
 
 export default function UserMenu() {
+  const dispatch = useDispatch();
+  const nameUser = useSelector(authSelectors.getUsername);
   return (
     <div style={styles.container}>
-      <span style={styles.name}>Добро пожаловать</span>
-      <button type="button">Выйти</button>
+      <span style={styles.name}>Добро пожаловать, {nameUser}</span>
+      <button type="button" onClick={() => dispatch(authOperations.logOut())}>
+        Выйти
+      </button>
     </div>
   );
 }

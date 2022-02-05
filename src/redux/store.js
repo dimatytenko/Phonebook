@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import contactsReducer from './contacts/contacts-reducer';
+import { contactsReducer } from './contacts';
+import { authReducer } from './auth';
+
 import logger from 'redux-logger';
 import {
-  // persistStore,
-  // persistReducer,
+  persistStore,
+  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -11,18 +13,18 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
-// const contactsPersistConfig = {
-//   key: 'contacts',
-//   storage: storage,
-//   blacklist: ['filter'],
-// };
-
+const authPersistConfig = {
+  key: 'auth',
+  storage: storage,
+  whitelist: ['token'],
+};
 const store = configureStore({
   reducer: {
+    // auth: authReducer.reducer,
+    auth: persistReducer(authPersistConfig, authReducer.reducer),
     contacts: contactsReducer,
-    // contacts: persistReducer(contactsPersistConfig, contactsReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -33,8 +35,8 @@ const store = configureStore({
   devTools: process.env.NODE_ENV === 'development',
 });
 
-// let persistor = persistStore(store);
+let persistor = persistStore(store);
 
-const rootStore = { store };
+const rootStore = { store, persistor };
 
 export default rootStore;

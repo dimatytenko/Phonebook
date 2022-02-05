@@ -1,26 +1,20 @@
-// import React, { useState } from 'react';
-import AppBar from './components/AppBar';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { authOperations } from './redux/auth';
 import HomeView from './views/HomeView';
 import ContactsView from './views/ContactsView';
 import LoginView from './views/LoginView';
 import RegisterView from './views/RegisterView';
-
+import AppBar from './components/AppBar';
 import Container from 'components/Container';
-// import ContactForm from 'components/ContactForm';
-// import ContactList from 'components/ContactList';
-// import Filter from 'components/Filter';
-// import IconButton from 'components/IconButton';
-// import { ReactComponent as PlusIcon } from './icons/plus.svg';
-// import Modal from 'components/Modal';
 
 export default function App() {
-  // const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
-  // const toggleModal = () => {
-  //   setShowModal(prevState => !prevState);
-  // };
-
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
   return (
     <Container>
       <AppBar />
@@ -31,21 +25,6 @@ export default function App() {
         <Route path="/register" element={<RegisterView />} />
         <Route path="/login" element={<LoginView />} />
       </Routes>
-
-      {/* <div className="App">
-        <h1>Phonebook</h1>
-        <IconButton aria-label="plus" onClick={toggleModal}>
-          <PlusIcon width="20" height="20" />
-        </IconButton>
-        {showModal && (
-          <Modal onClose={toggleModal}>
-            <ContactForm onClose={toggleModal} />
-          </Modal>
-        )}
-        <h2>Contacts</h2>
-        <Filter />
-        <ContactList />
-      </div> */}
     </Container>
   );
 }
