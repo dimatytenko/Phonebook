@@ -2,13 +2,14 @@ import { useEffect, Suspense, lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import { authOperations, authSelectors } from './redux/auth';
-import AppBar from './components/UserMenu/Appbar';
+import AppBar from './components/AppBar';
 import Container from 'components/Container';
-import PrivateRoute from './components/UserMenu/PrivateRoute';
-import PublicRoute from './components/UserMenu/PublicRoute';
+import PrivateRoute from './Routes/PrivateRoute';
+import PublicRoute from './Routes/PublicRoute';
+import Loader from './components/Loader';
 
-const HomeView = lazy(() => import('./views/HomeView'));
-const ContactsView = lazy(() => import('./views/ContactsView'));
+const HomeView = lazy(() => import('./views/HomeViews/HomeView'));
+const ContactsView = lazy(() => import('./views/ContactsView/ContactsView'));
 const LoginView = lazy(() => import('./views/LoginView'));
 const RegisterView = lazy(() => import('./views/RegisterView'));
 
@@ -20,33 +21,35 @@ export default function App() {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   return (
-    <Container>
-      <AppBar />
+    !isRefreshing && (
+      <Container>
+        <AppBar />
 
-      {/* {isRefreshing && (
-        <> */}
+        <Switch>
+          <Suspense fallback={<Loader />}>
+            <PublicRoute exact path="/">
+              <HomeView />
+            </PublicRoute>
 
-      <Switch>
-        <Suspense fallback={<p>Загружаем...</p>}>
-          <PublicRoute exact path="/">
-            <HomeView />
-          </PublicRoute>
+            <PublicRoute
+              exact
+              path="/register"
+              redirectTo="/contacts"
+              restricted
+            >
+              <RegisterView />
+            </PublicRoute>
 
-          <PublicRoute exact path="/register" redirectTo="/contacts" restricted>
-            <RegisterView />
-          </PublicRoute>
+            <PublicRoute exact path="/login" redirectTo="/contacts" restricted>
+              <LoginView />
+            </PublicRoute>
 
-          <PublicRoute exact path="/login" redirectTo="/contacts" restricted>
-            <LoginView />
-          </PublicRoute>
-
-          <PrivateRoute path="/contacts">
-            <ContactsView />
-          </PrivateRoute>
-        </Suspense>
-      </Switch>
-      {/* </> */}
-      {/* )} */}
-    </Container>
+            <PrivateRoute path="/contacts">
+              <ContactsView />
+            </PrivateRoute>
+          </Suspense>
+        </Switch>
+      </Container>
+    )
   );
 }

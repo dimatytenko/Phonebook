@@ -1,7 +1,7 @@
 const getIsLoggedIn = state => state.auth.isLoggedIn;
 
 const getUsername = state => state.auth.user.name;
-const getIsRefreshing = state => state.auth.getIsRefreshing;
+const getIsRefreshing = state => state.auth.isRefreshing;
 
 const authSelectors = {
   getIsLoggedIn,

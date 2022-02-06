@@ -1,0 +1,17 @@
+@import 'styles/shared';
+
+.HomeView {
+  min-height: calc(100vh - 500px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__title {
+    font-size: 48px;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 30px 50px;
+
+    box-shadow: 0 2.8px 2.2px red, 0 6.7px 5.3px blue, 0 12.5px 10px green,
+      0 22.3px 17.9px purple, 0 41.8px 33.4px orange, 0 100px 80px teal;
+  }
+}

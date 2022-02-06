@@ -1,0 +1,21 @@
+@import 'styles/shared';
+
+.AuthNav {
+  &__link {
+    @extend %link;
+    display: 'inline-block';
+    padding: 12px;
+    font-weight: 700;
+    color: $black;
+
+    transition: color $timing-delay;
+
+    &:hover,
+    &:focus {
+      color: $hoverPrimary;
+    }
+  }
+  &__link.active {
+    color: $hoverPrimary;
+  }
+}

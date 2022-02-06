@@ -1,20 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import * as connectionsAPI from '../../services/connections-API';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
-};
+const token = connectionsAPI.token;
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await axios.post('/users/signup', credentials);
+    const { data } = await connectionsAPI.fetchRegister(credentials);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -24,7 +15,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await axios.post('/users/login', credentials);
+    const { data } = await connectionsAPI.fetchLogIn(credentials);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -34,7 +25,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
-    await axios.post('/users/logout');
+    await connectionsAPI.fetchLogOut;
     token.unset();
   } catch (error) {
     // TODO: Добавить обработку ошибки error.message
@@ -53,7 +44,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.get('/users/current');
+      const data = await connectionsAPI.fetchUsers();
       return data;
     } catch (error) {
       // TODO: Добавить обработку ошибки error.message
