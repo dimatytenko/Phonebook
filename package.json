@@ -53,7 +53,7 @@
     "prop-types": "^15.7.2",
     "react-loader-spinner": "^5.1.0",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^5.2.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0"
   },
