@@ -1,10 +1,17 @@
 @import 'styles/shared';
 
 .HomeView {
-  min-height: calc(100vh - 500px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  &__img {
+    max-width: 250px;
+    height: 300px;
+    background-image: url('../../image/phoneBook.png');
+    background-size: 250px 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    border-radius: 6px;
+  }
+
   &__title {
     font-size: 48px;
     font-weight: 500;
