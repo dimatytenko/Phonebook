@@ -5,7 +5,8 @@ const token = connectionsAPI.token;
 
 const register = createAsyncThunk('auth/register', async credentials => {
   try {
-    const { data } = await connectionsAPI.fetchRegister(credentials);
+    const data = await connectionsAPI.fetchRegister(credentials);
+    console.log(data);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -15,7 +16,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
-    const { data } = await connectionsAPI.fetchLogIn(credentials);
+    const data = await connectionsAPI.fetchLogIn(credentials);
     token.set(data.token);
     return data;
   } catch (error) {
