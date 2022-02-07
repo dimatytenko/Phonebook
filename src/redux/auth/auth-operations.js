@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Alert } from 'bootstrap';
 import * as connectionsAPI from '../../services/connections-API';
 
 const token = connectionsAPI.token;
@@ -9,9 +10,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     console.log(data);
     token.set(data.token);
     return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
+  } catch (error) {}
 });
 
 const logIn = createAsyncThunk('auth/login', async credentials => {
@@ -19,18 +18,14 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     const data = await connectionsAPI.fetchLogIn(credentials);
     token.set(data.token);
     return data;
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
+  } catch (error) {}
 });
 
 const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await connectionsAPI.fetchLogOut;
     token.unset();
-  } catch (error) {
-    // TODO: Добавить обработку ошибки error.message
-  }
+  } catch (error) {}
 });
 
 const fetchCurrentUser = createAsyncThunk(
@@ -47,9 +42,7 @@ const fetchCurrentUser = createAsyncThunk(
     try {
       const data = await connectionsAPI.fetchUsers();
       return data;
-    } catch (error) {
-      // TODO: Добавить обработку ошибки error.message
-    }
+    } catch (error) {}
   },
 );
 
