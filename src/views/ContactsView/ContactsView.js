@@ -19,7 +19,7 @@ export default function ContactsView() {
         <h1 className="ContactsView__title">Phonebook</h1>
         <IconButton aria-label="plus" onClick={toggleModal}>
           <PlusIcon width="20" height="20" />
-          <p className="ContactsView__add-contact">add contact</p>
+          <p className="ContactsView__add-contact">Add contact</p>
         </IconButton>
         {showModal && (
           <Modal onClose={toggleModal}>

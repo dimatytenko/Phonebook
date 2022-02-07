@@ -10,8 +10,8 @@ import Loader from './components/Loader';
 
 const HomeView = lazy(() => import('./views/HomeViews/HomeView'));
 const ContactsView = lazy(() => import('./views/ContactsView/ContactsView'));
-const LoginView = lazy(() => import('./views/LoginView'));
-const RegisterView = lazy(() => import('./views/RegisterView'));
+const LoginView = lazy(() => import('./views/LoginView/LoginView'));
+const RegisterView = lazy(() => import('./views/RegisterView/RegisterView'));
 
 export default function App() {
   const dispatch = useDispatch();
