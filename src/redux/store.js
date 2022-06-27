@@ -1,8 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { contactsReducer } from './contacts';
-import { authReducer } from './auth';
-
-import logger from 'redux-logger';
 import {
   persistStore,
   persistReducer,
@@ -15,22 +11,26 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 
+import { contactsReducer } from './contacts';
+import { authReducer } from './auth';
+
 const authPersistConfig = {
   key: 'auth',
   storage: storage,
   whitelist: ['token'],
 };
+
 const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
-    contacts: contactsReducer,
+    contacts: contactsReducer.contacts,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(logger),
+    }),
   devTools: process.env.NODE_ENV === 'development',
 });
 

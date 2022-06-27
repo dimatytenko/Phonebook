@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
-import './Filter.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import contactsAction from '../../redux/contacts/contacts-actions';
+
+import './Filter.scss';
+import { contactsReducer } from '../../redux/contacts';
 import { contactsSelectors } from '../../redux/contacts';
 
 function Filter() {
   const value = useSelector(contactsSelectors.getFilter);
   const dispatch = useDispatch();
+  const { filter } = contactsReducer;
+
   return (
     <div className="filter">
       <label className="filter__label">Find contacts by name</label>
@@ -14,9 +17,7 @@ function Filter() {
         className="filter__input"
         type="text"
         value={value}
-        onChange={event =>
-          dispatch(contactsAction.filter(event.currentTarget.value))
-        }
+        onChange={event => dispatch(filter(event.currentTarget.value))}
       />
     </div>
   );
