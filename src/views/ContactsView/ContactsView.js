@@ -15,8 +15,8 @@ export default function ContactsView() {
   };
   return (
     <div className="ContactsView">
+      <h1 className="ContactsView__title">Phonebook</h1>
       <div className="ContactsView__box">
-        <h1 className="ContactsView__title">Phonebook</h1>
         <IconButton aria-label="plus" onClick={toggleModal}>
           <PlusIcon width="20" height="20" />
           <p className="ContactsView__add-contact">Add contact</p>
@@ -26,7 +26,7 @@ export default function ContactsView() {
             <ContactForm onClose={toggleModal} />
           </Modal>
         )}
-        <h2 className="ContactsView__subtitle">Contacts</h2>
+
         <Filter />
       </div>
 

@@ -1,5 +1,3 @@
-@import 'styles/shared';
-
 .filter {
   &__label {
     display: block;
@@ -11,7 +9,7 @@
     outline: none;
 
     &:focus {
-      border-color: $hoverPrimary;
+      border-color: wheat;
     }
   }
 }

@@ -1,11 +1,13 @@
-import authOperations from './auth-operations';
-const { createSlice } = require('@reduxjs/toolkit');
+import { createSlice } from '@reduxjs/toolkit';
+
+import * as authOperations from './authOperations';
 
 const initialState = {
   user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 const authSlice = createSlice({
@@ -13,6 +15,10 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [authOperations.register.fulfilled](state, action) {
+      if (action.payload === 'Request failed with status code 400') {
+        state.error = true;
+        return;
+      }
       if (action.payload) {
         state.user = action.payload.user;
         state.token = action.payload.token;
@@ -47,4 +53,4 @@ const authSlice = createSlice({
   },
 });
 
-export default authSlice.reducer;
+export const auth = authSlice.reducer;

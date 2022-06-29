@@ -1,6 +1,5 @@
-@import 'styles/shared';
 .Form {
-  border: 2px solid $black;
+  border: 2px solid wheat;
   padding: 15px;
   display: flex;
   justify-content: center;
@@ -19,24 +18,23 @@
     outline: none;
 
     &:focus {
-      border-color: $hoverPrimary;
+      border-color: wheat;
     }
   }
 
   &__button {
     display: block;
     cursor: pointer;
-    background-color: $white;
+    background-color: wheat;
     border: none;
     outline: none;
     padding: 5px 20px;
     border-radius: 10px;
-    transition: background-color $timing-delay;
     box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.3);
 
     &:hover,
     &:focus {
-      background-color: $hoverPrimary;
+      background-color: wheat;
     }
   }
 }

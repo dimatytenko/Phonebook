@@ -14,15 +14,17 @@ import storage from 'redux-persist/lib/storage'; // defaults to localStorage for
 import { contactsReducer } from './contacts';
 import { authReducer } from './auth';
 
+//* config persist
 const authPersistConfig = {
   key: 'auth',
   storage: storage,
   whitelist: ['token'],
 };
 
+//* store
 const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    auth: persistReducer(authPersistConfig, authReducer.auth),
     contacts: contactsReducer.contacts,
   },
   middleware: getDefaultMiddleware =>

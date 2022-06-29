@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createMyToast } from '../../functions';
+
 import './ContactForm.scss';
 import { contactsOperations, contactsSelectors } from '../../redux/contacts';
 
@@ -24,7 +26,7 @@ export default function ContactForm({ onClose }) {
 
     const names = contacts.map(contact => contact.name);
     if (names.includes(name)) {
-      alert(`${name} is already in contacts`);
+      createMyToast(`${name} is already in contacts!`);
       return;
     } else {
       onSubmit({ name, number });

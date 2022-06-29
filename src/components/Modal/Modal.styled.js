@@ -1,15 +1,16 @@
-@import 'styles/shared';
+import styled from '@emotion/styled';
 
-.Modal__backdrop {
-  position: fixed;
+export const Backdrop = styled.div`
+ position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: $hoverPrimary;
+  background-color:  ${props => props.theme.backgrounds.modalBackdrop};;
 }
+`;
 
-.Modal__content {
+export const Content = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -17,8 +18,9 @@
   max-width: 600px;
   width: 100%;
   padding: 12px;
-  background-color: $white;
+  background-color:  ${props => props.theme.backgrounds.modalBody};;
   border-radius: 3px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
     0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
+`;

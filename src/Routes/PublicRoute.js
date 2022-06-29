@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { authSelectors } from '../redux/auth';
 
-export default function PublicRoute({
+export function PublicRoute({
   children,
   restricted = false,
   redirectTo = '/',

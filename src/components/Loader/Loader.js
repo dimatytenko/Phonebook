@@ -1,12 +1,20 @@
-import { TailSpin } from 'react-loader-spinner';
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { Oval } from 'react-loader-spinner';
 
-import React, { Component } from 'react';
+import { LoaderBox } from './Loader.styled';
 
-class Loader extends Component {
-  render() {
-    return <TailSpin color="#00BFFF" height={120} width={120} />;
-  }
-}
+const Loader = ({ width = 50, height = 50 }) => {
+  return (
+    <LoaderBox>
+      <Oval
+        ariaLabel="loading-indicator"
+        width={width}
+        height={height}
+        strokeWidth={5}
+        color="black"
+        secondaryColor="red"
+      />
+    </LoaderBox>
+  );
+};
 
 export default Loader;

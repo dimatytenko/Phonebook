@@ -4,14 +4,14 @@ import { Routes, Route } from 'react-router-dom';
 
 import { authOperations, authSelectors } from './redux/auth';
 import Loader from 'components/Loader';
-import PrivateRoute from './Routes/PrivateRoute';
-import PublicRoute from './Routes/PublicRoute';
+import { PrivateRoute } from './Routes/PrivateRoute';
+import { PublicRoute } from './Routes/PublicRoute';
+import Layout from './views/Layout';
 
-const Layout = lazy(() => import('views/Layout/Layout'));
-const HomeView = lazy(() => import('views/HomeViews/HomeView'));
+const HomeView = lazy(() => import('views/HomeView'));
 const ContactsView = lazy(() => import('views/ContactsView/ContactsView'));
-const LoginView = lazy(() => import('views/LoginView/LoginView'));
-const RegisterView = lazy(() => import('views/RegisterView/RegisterView'));
+const LoginView = lazy(() => import('views/LoginView'));
+const RegisterView = lazy(() => import('views/RegisterView'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -23,7 +23,7 @@ export default function App() {
   return (
     !isRefreshing && (
       <>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<Loader width={200} height={200} />}>
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route

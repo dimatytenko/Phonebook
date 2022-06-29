@@ -14,8 +14,8 @@ function ContactList() {
   const isLoading = useSelector(contactsSelectors.getLoading);
 
   return (
-    <div>
-      {isLoading && <Loader />}
+    <>
+      {isLoading && <Loader height={200} width={200} />}
 
       {contacts.length > 0 && !isLoading && (
         <ul>
@@ -24,7 +24,7 @@ function ContactList() {
           ))}
         </ul>
       )}
-    </div>
+    </>
   );
 }
 

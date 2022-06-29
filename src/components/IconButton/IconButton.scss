@@ -1,24 +1,22 @@
-@import 'styles/shared';
-
 .IconButton {
   margin: 0;
   padding: 10px 15px;
   border: none;
   border-radius: 5%;
-  color: $black;
+  color: wheat;
   font: inherit;
-  background-color: $white;
+  background-color: wheat;
   cursor: pointer;
   background-color: transparent;
 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color $timing-delay;
+  transition: background-color wheat;
 
   &:hover,
   :focus {
-    background-color: $hoverPrimary;
-    fill: $white;
+    background-color: wheat;
+    fill: wheat;
   }
 }

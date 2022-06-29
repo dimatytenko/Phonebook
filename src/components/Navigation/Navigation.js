@@ -1,21 +1,51 @@
 import { NavLink } from 'react-router-dom';
-import { authSelectors } from '../../redux/auth';
 import { useSelector } from 'react-redux';
-import './Navigation.scss';
+import { Typography } from '@mui/material';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import HomeIcon from '@mui/icons-material/Home';
+
+import { authSelectors } from '../../redux/auth';
+import { NavigationWrapper, NavigationLink } from './Navigation.styled';
 
 function Navigation() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   return (
-    <nav className="Navigation">
-      <NavLink exact to="/" className="Navigation__link">
-        Home
+    <NavigationWrapper>
+      <NavLink to="/">
+        <NavigationLink>
+          <HomeIcon fontSize="large" sx={{ mr: 1 }} />
+          <Typography
+            component="div"
+            variant="string"
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', sm: 'block' },
+              fontSize: '28px',
+            }}
+          >
+            Home
+          </Typography>
+        </NavigationLink>
       </NavLink>
       {isLoggedIn && (
-        <NavLink to="/contacts" className="Navigation__link">
-          Contacts
+        <NavLink to="/contacts">
+          <NavigationLink>
+            <ImportContactsIcon fontSize="large" sx={{ mr: 1 }} />
+            <Typography
+              component="div"
+              variant="string"
+              sx={{
+                flexGrow: 1,
+                display: { xs: 'none', sm: 'block' },
+                fontSize: '28px',
+              }}
+            >
+              Contacts
+            </Typography>
+          </NavigationLink>
         </NavLink>
       )}
-    </nav>
+    </NavigationWrapper>
   );
 }
 

@@ -3,16 +3,17 @@ import * as connectionsAPI from '../../services/connections-API';
 
 const token = connectionsAPI.token;
 
-const register = createAsyncThunk('auth/register', async credentials => {
+export const register = createAsyncThunk('auth/register', async credentials => {
   try {
     const data = await connectionsAPI.fetchRegister(credentials);
-    console.log(data);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return error.message;
+  }
 });
 
-const logIn = createAsyncThunk('auth/login', async credentials => {
+export const logIn = createAsyncThunk('auth/login', async credentials => {
   try {
     const data = await connectionsAPI.fetchLogIn(credentials);
     token.set(data.token);
@@ -20,14 +21,14 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
   } catch (error) {}
 });
 
-const logOut = createAsyncThunk('auth/logout', async () => {
+export const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await connectionsAPI.fetchLogOut;
     token.unset();
   } catch (error) {}
 });
 
-const fetchCurrentUser = createAsyncThunk(
+export const fetchCurrentUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
@@ -44,12 +45,3 @@ const fetchCurrentUser = createAsyncThunk(
     } catch (error) {}
   },
 );
-
-const operations = {
-  register,
-  logIn,
-  logOut,
-  fetchCurrentUser,
-};
-
-export default operations;
