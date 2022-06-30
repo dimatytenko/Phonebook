@@ -1,6 +1,6 @@
 import { authSelectors, authOperations } from '../../redux/auth';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Typography, Box } from '@mui/material';
+import { Typography, Box } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 import { UserMenuWrapper, UserMenuButtonOut } from './UserMenu.styled';
