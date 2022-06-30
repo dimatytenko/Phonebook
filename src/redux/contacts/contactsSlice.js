@@ -9,7 +9,7 @@ const initialState = {
   filter: '',
 };
 
-const contactsSlise = createSlice({
+const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   reducers: {
@@ -58,5 +58,5 @@ const contactsSlise = createSlice({
   },
 });
 
-export const { filter } = contactsSlise.actions;
-export const contacts = contactsSlise.reducer;
+export const { filter } = contactsSlice.actions;
+export const contacts = contactsSlice.reducer;

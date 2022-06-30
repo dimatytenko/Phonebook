@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import {
   Container,
   Avatar,
@@ -16,11 +17,12 @@ import * as yup from 'yup';
 import { createMyToast } from '../../functions';
 
 import { authOperations } from '../../redux/auth';
+import { authSelectors } from '../../redux/auth';
 import { Copyright } from '../../components/Copyright';
 
 export default function RegisterView() {
   const dispatch = useDispatch();
-  const error = useSelector(state => state.auth.error);
+  const error = useSelector(authSelectors.getError);
 
   const validationSchema = yup.object({
     name: yup
@@ -47,12 +49,15 @@ export default function RegisterView() {
     validationSchema: validationSchema,
     onSubmit: values => {
       dispatch(authOperations.register(values));
-      if (error) {
-        createMyToast('Already have an account! Log in');
-        return;
-      }
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      createMyToast('Already have an account! Log in');
+      return;
+    }
+  }, [error]);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -137,7 +142,7 @@ export default function RegisterView() {
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/login" variant="body2">
-                Already have an account? Sign in
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>

@@ -26,7 +26,7 @@ export async function fetchLogIn(credentials) {
 }
 
 export async function fetchLogOut() {
-  const data = await axios.post('/users/login').then(res => res.data);
+  const data = await axios.post('/users/logout').then(res => res.data);
   return data;
 }
 

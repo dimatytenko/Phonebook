@@ -12,6 +12,7 @@ const HomeView = lazy(() => import('views/HomeView/HomeView'));
 const ContactsView = lazy(() => import('views/ContactsView/ContactsView'));
 const LoginView = lazy(() => import('views/LoginView/LoginView'));
 const RegisterView = lazy(() => import('views/RegisterView/RegisterView'));
+const NotFoundView = lazy(() => import('views/NotFoundView/NotFound'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -61,6 +62,8 @@ export default function App() {
                   </PrivateRoute>
                 }
               />
+
+              <Route path="*" element={<NotFoundView />} />
             </Route>
           </Routes>
         </Suspense>

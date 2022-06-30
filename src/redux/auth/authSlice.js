@@ -14,23 +14,22 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    [authOperations.register.pending](state, action) {
+      state.error = false;
+    },
     [authOperations.register.fulfilled](state, action) {
-      if (action.payload === 'Request failed with status code 400') {
-        state.error = true;
-        return;
-      }
-      if (action.payload) {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      }
+      state.error = false;
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
+    [authOperations.register.rejected](state, action) {
+      state.error = true;
     },
     [authOperations.logIn.fulfilled](state, action) {
-      if (action.payload) {
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isLoggedIn = true;
-      }
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
     },
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
@@ -41,11 +40,9 @@ const authSlice = createSlice({
       state.isRefreshing = true;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
-      if (action.payload) {
-        state.user = action.payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      }
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
     },
     [authOperations.fetchCurrentUser.rejected](state) {
       state.isRefreshing = false;
