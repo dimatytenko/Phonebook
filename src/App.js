@@ -8,10 +8,10 @@ import { PrivateRoute } from './Routes/PrivateRoute';
 import { PublicRoute } from './Routes/PublicRoute';
 import Layout from './views/Layout';
 
-const HomeView = lazy(() => import('views/HomeView'));
+const HomeView = lazy(() => import('views/HomeView/HomeView'));
 const ContactsView = lazy(() => import('views/ContactsView/ContactsView'));
-const LoginView = lazy(() => import('views/LoginView'));
-const RegisterView = lazy(() => import('views/RegisterView'));
+const LoginView = lazy(() => import('views/LoginView/LoginView'));
+const RegisterView = lazy(() => import('views/RegisterView/RegisterView'));
 
 export default function App() {
   const dispatch = useDispatch();
