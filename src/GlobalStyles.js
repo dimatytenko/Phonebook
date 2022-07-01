@@ -18,6 +18,10 @@ export const GlobalStyles = css`
     padding: 0;
   }
 
+  li {
+    list-style: none;
+  }
+
   img {
     display: block;
     max-width: 100%;

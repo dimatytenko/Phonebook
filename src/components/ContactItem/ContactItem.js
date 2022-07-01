@@ -1,26 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './ContactItem.scss';
-import IconButton from 'components/IconButton';
-import { ReactComponent as MinusIcon } from '../../icons/minus.svg';
+import { Button, Card, Typography } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import { useDispatch } from 'react-redux';
 import { contactsOperations } from '../../redux/contacts';
 
 function ContactItem({ id, name, number }) {
   const dispatch = useDispatch();
   return (
-    <li className="contact">
-      <div className="contact__item">
-        {name}: {number}
-      </div>
-      <div className="contact__button">
-        <IconButton
+    <li>
+      <Card sx={{ padding: '8px' }}>
+        <Typography variant="h6" component="div" gutterBottom>
+          {name}
+        </Typography>
+        <Typography variant="h6" component="div" gutterBottom>
+          {number}
+        </Typography>
+
+        <Button
+          variant="outlined"
+          startIcon={<DeleteIcon />}
           onClick={() => dispatch(contactsOperations.deleteContact(id))}
-          aria-label="minus"
         >
-          <MinusIcon width="20" height="20" />
-        </IconButton>
-      </div>
+          Delete
+        </Button>
+      </Card>
     </li>
   );
 }

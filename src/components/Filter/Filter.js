@@ -13,7 +13,7 @@ function Filter() {
     <Box component="form" noValidate autoComplete="off">
       <TextField
         id="outlined-search"
-        label="Find contact by name"
+        label="Find contact by name..."
         type="search"
         onChange={event => dispatch(filter(event.currentTarget.value))}
       />

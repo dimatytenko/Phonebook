@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import { Typography } from '@mui/material';
+import { Button } from '@mui/material';
+
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
-import IconButton from 'components/IconButton';
-import { ReactComponent as PlusIcon } from '../../icons/plus.svg';
 import Modal from 'components/Modal';
-import './ContactsView.scss';
+import { ContactsWrapper, ContactsControlls } from './ContactsView.styled';
 
 export default function ContactsView() {
   const [showModal, setShowModal] = useState(false);
@@ -14,13 +15,18 @@ export default function ContactsView() {
     setShowModal(prevState => !prevState);
   };
   return (
-    <div className="ContactsView">
-      <h1 className="ContactsView__title">Phonebook</h1>
-      <div className="ContactsView__box">
-        <IconButton aria-label="plus" onClick={toggleModal}>
-          <PlusIcon width="20" height="20" />
-          <p className="ContactsView__add-contact">Add contact</p>
-        </IconButton>
+    <ContactsWrapper>
+      <Typography
+        component="h1"
+        variant="string"
+        sx={{ fontSize: { xs: '45px', md: '65px' }, mb: '20px' }}
+      >
+        Phonebook
+      </Typography>
+      <ContactsControlls>
+        <Button variant="outlined" size="large" onClick={toggleModal}>
+          Add contact
+        </Button>
         {showModal && (
           <Modal onClose={toggleModal}>
             <ContactForm onClose={toggleModal} />
@@ -28,11 +34,9 @@ export default function ContactsView() {
         )}
 
         <Filter />
-      </div>
+      </ContactsControlls>
 
-      <div className="ContactsView__list">
-        <ContactList />
-      </div>
-    </div>
+      <ContactList />
+    </ContactsWrapper>
   );
 }
