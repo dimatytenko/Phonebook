@@ -18,7 +18,9 @@ export const logIn = createAsyncThunk('auth/login', async credentials => {
     const data = await connectionsAPI.fetchLogIn(credentials);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    return error.rejectWithValue();
+  }
 });
 
 export const logOut = createAsyncThunk('auth/logout', async () => {

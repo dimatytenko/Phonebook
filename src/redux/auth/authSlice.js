@@ -26,16 +26,25 @@ const authSlice = createSlice({
     [authOperations.register.rejected](state, action) {
       state.error = true;
     },
+
+    [authOperations.logIn.pending](state, action) {
+      state.error = false;
+    },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
     },
+    [authOperations.logIn.rejected](state, action) {
+      state.error = true;
+    },
+
     [authOperations.logOut.fulfilled](state, action) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
     },
+
     [authOperations.fetchCurrentUser.pending](state) {
       state.isRefreshing = true;
     },

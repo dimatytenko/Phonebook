@@ -1,4 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 import {
   Avatar,
   Button,
@@ -16,11 +18,13 @@ import { Theme } from '../../Theme';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-import { authOperations } from '../../redux/auth';
+import { authOperations, authSelectors } from '../../redux/auth';
 import { Copyright } from '../../components/Copyright';
+import { createMyToast } from '../../functions';
 
 export default function LoginView() {
   const dispatch = useDispatch();
+  const error = useSelector(authSelectors.getError);
 
   const validationSchema = yup.object({
     email: yup
@@ -29,7 +33,6 @@ export default function LoginView() {
       .required('Email is required'),
     password: yup
       .string('Enter your password')
-      .min(9, 'Password should be of minimum 9 characters length')
       .required('Password is required'),
   });
 
@@ -44,6 +47,13 @@ export default function LoginView() {
       dispatch(authOperations.logIn(values));
     },
   });
+
+  useEffect(() => {
+    if (error) {
+      createMyToast('Wrong password!');
+      return;
+    }
+  }, [error]);
 
   return (
     <ThemeProvider theme={Theme}>

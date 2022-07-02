@@ -17,8 +17,8 @@ ReactDOM.render(
     <Provider store={rootStor.store}>
       <PersistGate loading={null} persistor={rootStor.persistor}>
         <BrowserRouter>
-          <Global styles={GlobalStyles} />
           <ThemeProvider theme={Theme}>
+            <Global styles={GlobalStyles} />
             <App />
           </ThemeProvider>
         </BrowserRouter>

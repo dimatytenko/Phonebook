@@ -9,7 +9,7 @@ export default function Layout() {
   return (
     <>
       <AppBar />
-      <Container fixed sx={{ height: '100vh' }}>
+      <Container fixed sx={{ height: '100vh' }} position="relative">
         <Outlet />
         <ToastContainer />
       </Container>

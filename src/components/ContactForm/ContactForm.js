@@ -33,17 +33,18 @@ export default function ContactForm({ onClose }) {
     }
   };
 
-  const validationSchema = yup.object().shape({
+  const phoneRegExp = /(?=.*\+[0-9]{3}\s?[0-9]{2}\s?[0-9]{3}\s?[0-9]{4,5}$)/gm;
+
+  const validationSchema = yup.object({
     name: yup
-      .string('Enter your name')
+      .string('Enter contacts name')
       .min(3, `Name should be of minimum 3 characters`)
       .max(21, 'Name should be of maximum 21 characters')
       .required('Name is required'),
     number: yup
-      .string('Enter your password')
-      .min(10, 'Number should be of minimum 10 characters')
-      .max(10, 'Number should be of minimum 10 characters')
-      .required('Password is required'),
+      .string('Enter number phone')
+      .matches(phoneRegExp, 'Phone number is not valid, type Ukraine')
+      .required('Number phone is required'),
   });
 
   const formik = useFormik({
@@ -101,10 +102,9 @@ export default function ContactForm({ onClose }) {
               <TextField
                 required
                 fullWidth
-                id="number"
-                label="Number 099 99 99 999"
                 name="number"
-                autoComplete="number"
+                id="Number"
+                label="Number"
                 value={formik.values.number}
                 onChange={formik.handleChange}
                 error={formik.touched.number && Boolean(formik.errors.number)}
