@@ -6,7 +6,7 @@ import AuthNav from '../AuthNav';
 import UserMenu from '../UserMenu';
 import { SwitchTheme } from '../SwitchTheme';
 import { authSelectors } from '../../redux/auth';
-import { AppBarWrapper, AppBarBox } from './AppBar.styled';
+import { AppBarWrapper, AppBarBox, AppBarSwitchBox } from './AppBar.styled';
 
 export default function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -16,7 +16,9 @@ export default function AppBar() {
         <AppBarBox>
           <Navigation />
           {!isLoggedIn ? <AuthNav /> : <UserMenu />}
-          <SwitchTheme />
+          <AppBarSwitchBox>
+            <SwitchTheme />
+          </AppBarSwitchBox>
         </AppBarBox>
       </Container>
     </AppBarWrapper>

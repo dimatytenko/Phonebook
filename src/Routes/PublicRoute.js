@@ -12,7 +12,7 @@ export function PublicRoute({
   const shouldRedirect = isLoggedIn && restricted;
   return (
     <>
-      {shouldRedirect ? <Navigate to={redirectTo} replace={true} /> : children}
+      {shouldRedirect ? <Navigate to={redirectTo} replace={false} /> : children}
     </>
   );
 }
