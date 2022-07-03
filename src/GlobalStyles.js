@@ -1,14 +1,14 @@
 import { css } from '@emotion/react';
 
-export const GlobalStyles = css`
+export const GlobalStyles = theme => css`
   body {
     margin: 0;
+    background-color: ${theme.backgrounds.body};
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
       'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
       'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2a363b;
     font-weight: 500;
   }
 

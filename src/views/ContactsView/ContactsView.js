@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Typography } from '@mui/material';
 import { Button } from '@mui/material';
 
@@ -19,6 +20,7 @@ export default function ContactsView() {
       <Typography
         component="h1"
         variant="string"
+        color={theme => theme.colors.bodyPrimary}
         sx={{ fontSize: { xs: '45px', md: '65px' }, mb: '20px' }}
       >
         Phonebook

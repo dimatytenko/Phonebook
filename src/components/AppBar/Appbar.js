@@ -4,6 +4,7 @@ import { Container } from '@mui/material';
 import Navigation from '../Navigation';
 import AuthNav from '../AuthNav';
 import UserMenu from '../UserMenu';
+import { SwitchTheme } from '../SwitchTheme';
 import { authSelectors } from '../../redux/auth';
 import { AppBarWrapper, AppBarBox } from './AppBar.styled';
 
@@ -15,6 +16,7 @@ export default function AppBar() {
         <AppBarBox>
           <Navigation />
           {!isLoggedIn ? <AuthNav /> : <UserMenu />}
+          <SwitchTheme />
         </AppBarBox>
       </Container>
     </AppBarWrapper>
