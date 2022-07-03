@@ -15,7 +15,7 @@ function Navigation() {
         <NavigationLink>
           <HomeIcon fontSize="large" sx={{ mr: 1 }} />
           <Typography
-            component="div"
+            component="h3"
             variant="string"
             sx={{
               flexGrow: 1,
@@ -32,7 +32,7 @@ function Navigation() {
           <NavigationLink>
             <ImportContactsIcon fontSize="large" sx={{ mr: 1 }} />
             <Typography
-              component="div"
+              component="h3"
               variant="string"
               sx={{
                 flexGrow: 1,

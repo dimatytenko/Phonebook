@@ -12,7 +12,7 @@ export default function AuthNav() {
         <AuthLink>
           <HowToRegIcon fontSize="large" sx={{ mr: 1 }} />
           <Typography
-            component="div"
+            component="h3"
             variant="string"
             sx={{
               flexGrow: 1,
@@ -29,7 +29,7 @@ export default function AuthNav() {
           <LoginIcon fontSize="large" sx={{ mr: 1 }} />
           <Typography
             variant="string"
-            component="div"
+            component="h3"
             sx={{
               flexGrow: 1,
               display: { xs: 'none', sm: 'block' },
