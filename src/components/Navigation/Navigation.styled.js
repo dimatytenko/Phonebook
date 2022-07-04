@@ -8,7 +8,7 @@ export const NavigationWrapper = styled.nav`
 export const NavigationLink = styled.div`
   display: flex;
   align-items: flex-start;
-  // transition: color ${props => props.theme.transitions.primary};
+  transition: color ${props => props.theme.transitions.primary};
 
   &:hover,
   &:focus {
