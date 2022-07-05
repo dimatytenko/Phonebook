@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import * as connectionsAPI from '../../services/connections-API';
+import * as connectionsAPI from '../../services/connectionsAPI';
 
 const token = connectionsAPI.token;
 
